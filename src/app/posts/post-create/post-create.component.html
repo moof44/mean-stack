@@ -1,0 +1,22 @@
+<mat-card appearance="outlined">
+  <!--     <mat-card-header>
+        <mat-card-title>Title</mat-card-title>
+        <mat-card-subtitle>Subtitle</mat-card-subtitle>
+    </mat-card-header>
+    <img matCardImage src="Card wide image source"> -->
+  <mat-card-content>
+    <mat-form-field>
+      <textarea matInput rows="6" [(ngModel)]="textInput"></textarea>
+    </mat-form-field>
+    <button mat-button (click)="onAddPost()" color="primary">Save Post</button>
+  </mat-card-content>
+  <!--     <mat-card-actions align="start">
+        <button mat-button (click)="onAction1">Action1</button>
+        
+    </mat-card-actions>
+    <mat-card-footer>
+        Footer
+    </mat-card-footer> -->
+</mat-card>
+
+<p>{{ newPost }}</p>

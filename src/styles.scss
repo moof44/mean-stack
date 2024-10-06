@@ -1,0 +1,27 @@
+/* You can add global styles to this file, and also import other style files */
+@use '@angular/material' as mat;
+
+$theme: mat.define-theme();
+
+.mat-primary{
+    --mat-toolbar-container-background-color: pink;
+}
+
+.mat-tertiary{
+    --mat-toolbar-container-background-color: blue;
+    --mat-toolbar-container-text-color: white;
+}
+
+.mat-accent{
+    --mat-toolbar-container-background-color: green;
+    --mat-toolbar-container-text-color: white;
+}
+
+.mat-warn{
+    --mat-toolbar-container-background-color: red;
+    --mat-toolbar-container-text-color: white;
+}
+
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
