@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, inject, Input, OnChanges, SimpleChanges, type OnInit } from '@angular/core';
-import {MatExpansionModule} from '@angular/material/expansion';
-import { Post } from '../post.model';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, effect, inject, type OnInit } from '@angular/core';
+import { MatExpansionModule } from '@angular/material/expansion';
 import { PostsService } from '../posts.service';
+import { MatButtonModule } from '@angular/material/button';
 
 @Component({
   selector: 'app-post-list',
@@ -10,21 +10,19 @@ import { PostsService } from '../posts.service';
   imports: [
     CommonModule,
     MatExpansionModule,
+    MatButtonModule,
   ],
   templateUrl: './post-list.component.html',
   styleUrl: './post-list.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostListComponent implements OnInit{
-  private _cd = inject(ChangeDetectorRef);
-  private postsService = inject(PostsService);
+  posts = inject(PostsService).posts;
 
-  @Input() posts:Post[] = [];
+  constructor(){
+  }
 
-  ngOnInit(): void { }
-
-    // {title: 'First Post', content: 'This is the first post\'s content'},
-    // {title: 'Second Post', content: 'This is the second post\'s content'},
-    // {title: 'Third Post', content: 'This is the third post\'s content' },
+  ngOnInit(): void { 
+  }
 
 }

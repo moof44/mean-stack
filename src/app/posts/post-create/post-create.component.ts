@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { ChangeDetectionStrategy, Component, EventEmitter, Output, type OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, inject, Output, type OnInit } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { Post } from '../post.model';
+import { PostsService } from '../posts.service';
 
 @Component({
   selector: 'app-post-create',
@@ -24,21 +25,16 @@ import { Post } from '../post.model';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PostCreateComponent implements OnInit {
-  input: Post = {
-    title: '',
-    content: '',
-  }
-  enteredContent = '';
-  enteredTitle = '';
   title='';
   content='';
   @Output()postCreated = new EventEmitter<Post>();
+  postService = inject(PostsService);
+
 
   ngOnInit(): void {}
 
   onAddPost(post: NgForm) {
-    //const {title, content} = this.input;
-    //const post = {title, content};
-    this.postCreated.emit(post.value);
+    this.postService.addPost(post.value);
+    post.resetForm();
   }
 }
