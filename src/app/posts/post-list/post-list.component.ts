@@ -19,12 +19,29 @@ import { MatButtonModule } from '@angular/material/button';
 export class PostListComponent implements OnInit{
   posts = inject(PostsService).posts;
   postService = inject(PostsService);
+  cdr = inject(ChangeDetectorRef);
+
 
   constructor(){
+    effect(()=>{
+      console.log('posts', this.posts());
+      this.cdr.detectChanges();
+    })
   }
 
   ngOnInit(): void { 
     this.postService.fetchPost();
+  }
+
+  onDelete(id: string){
+    //this.postService.deletePost(id);
+    this.postService.deletePost2(id).subscribe(v=>{
+      console.log('delete', v)
+      const posts = this.posts();
+      posts.splice(posts.findIndex(p=>p.id === id), 1);
+      this.posts.set(posts);
+      this.cdr.detectChanges();
+    })
   }
 
 }
