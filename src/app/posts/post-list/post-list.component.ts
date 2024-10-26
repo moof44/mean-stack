@@ -18,11 +18,13 @@ import { MatButtonModule } from '@angular/material/button';
 })
 export class PostListComponent implements OnInit{
   posts = inject(PostsService).posts;
+  postService = inject(PostsService);
 
   constructor(){
   }
 
   ngOnInit(): void { 
+    this.postService.fetchPost();
   }
 
 }
